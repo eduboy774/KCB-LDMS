@@ -1,0 +1,22 @@
+[
+    {
+        "id": "1",
+        "code": 9000,
+        "status": true,
+        "message": "Operation Success"
+    },
+    {
+        "id": "2",
+        "code": 9001,
+        "status": false,
+        "message": "Record Not Found"
+    },
+    {
+        "id": "3",
+        "code": 9002,
+        "status": false,
+        "message": "Duplicate Record"
+    }
+   
+]
+  
