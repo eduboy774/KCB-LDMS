@@ -1,5 +1,5 @@
 from rest_framework.permissions import IsAuthenticated
-from ilmis_settings.models import LocationScanUsers
+from kcb_settings.models import LocationScanUsers
 from kcb_uaa.models import UsersWithRoles
 from kcb_accounts.models import UsersProfiles
 from .BearerTokenAuthentication import BearerTokenAuthentication

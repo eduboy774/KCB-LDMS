@@ -22,7 +22,7 @@ GENDER_CHOICES = (
 
 
 class UsersProfiles(models.Model):
-    primary_key = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     profile_unique_id = models.UUIDField(editable=False, default=uuid.uuid4, unique=True)
     profile_type = models.CharField(default='', choices=USER_PROFILES_TYPES, max_length=9000, blank=True)
     profile_level = models.CharField(default='', choices=PROFILE_LEVEL, max_length=9000, blank=True, null=True)
@@ -36,7 +36,7 @@ class UsersProfiles(models.Model):
 
     class Meta:
         db_table = 'kcb_user_profiles'
-        ordering = ['-primary_key']
+        ordering = ['-id']
         verbose_name_plural = "USER PROFILES"
 
     def __str__(self):
@@ -44,7 +44,7 @@ class UsersProfiles(models.Model):
 
 
 class ForgotPasswordRequestUsers(models.Model):
-    primary_key = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     request_user = models.ForeignKey(User, related_name='request_profile', on_delete=models.CASCADE)
     request_token = models.CharField(max_length=300, editable=False, default=None)
     request_is_used = models.BooleanField(default=False)
@@ -52,7 +52,7 @@ class ForgotPasswordRequestUsers(models.Model):
     
     class Meta:
         db_table = 'kcb_users_forgot_password_request'
-        ordering = ['-primary_key']
+        ordering = ['-id']
         verbose_name_plural = "FORGOT PASSWORD REQUESTS"
 
     def __str__(self):

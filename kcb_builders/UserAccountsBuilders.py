@@ -1,7 +1,7 @@
-from ilmis_accounts.models import *
-from ilmis_dto.UserAccounts import *
-from ilmis_dto_builder.UAABuilder import UAABuilder
-from ilmis_settings.models import LocationScanUsers
+from kcb_accounts.models import *
+from kcb_dto.UserAccounts import *
+from kcb_builders.UAABuilder import UAABuilder
+from kcb_settings.models import LocationScanUsers
 from kcb_uaa.models import *
 
 
@@ -36,7 +36,7 @@ class UserAccountBuilder:
             roles = UsersWithRoles.objects.filter(user_with_role_user=user_profile.profile_user).values('user_with_role_role__role_unique_id')
             roles_list = list(map(lambda x: UAABuilder.get_role_data(str(x['user_with_role_role__role_unique_id'])), roles))
             
-            from ilmis_dto_builder.SettingsBuilders import SettingsBuilder
+            from kcb_builders.SettingsBuilders import SettingsBuilder
             return UserProfileAndRoleObjects(
                 id = user_profile.primary_key,
                 user_profile = UserAccountBuilder.get_user_profile_data(user_profile.profile_unique_id),
