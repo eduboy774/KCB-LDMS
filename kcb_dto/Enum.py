@@ -32,3 +32,32 @@ DepartmentCodeEnum =graphene.Enum.from_enum(DepartmentCode)
 
 
   
+class UserProfile(enum.Enum):
+    ADMIN_PROFILE = 'ADMIN_PROFILE',
+    NORMAL_PROFILE = 'NORMAL_PROFILE'
+
+UserProfileEnum = graphene.Enum.from_enum(UserProfile)
+
+
+
+class GenderTypeInum(enum.Enum):
+    MALE = "MALE"
+    FEMALE = "FEMALE"
+    NONE = "NONE"
+
+GenderEnum = graphene.Enum.from_enum(GenderTypeInum)
+
+class ProfileLevelInum(enum.Enum):
+    REGION = "REGION"
+    DISTRICT = "DISTRICT"
+
+
+ProfileLevelEnum = graphene.Enum.from_enum(ProfileLevelInum)
+
+class UserTypeInum(enum.Enum):
+    ADMIN_PROFILE = 'ADMIN_PROFILE'
+    NORMAL_PROFILE = 'NORMAL_PROFILE'
+    
+
+
+UserEnum = graphene.Enum.from_enum(UserTypeInum)

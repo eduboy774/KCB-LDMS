@@ -1,4 +1,4 @@
-from ilmis_dto.Uaa import *
+from kcb_dto.Uaa import *
 from kcb_uaa.models import *
 
 

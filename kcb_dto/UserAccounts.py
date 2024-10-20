@@ -3,7 +3,7 @@ import graphene
 
 from .Uaa import UserRoleObjects
 from .Response import  ResponseObject
-from .Enums import GenderEnum, UserEnum, ProfileLevelEnum
+from .Enum import GenderEnum, UserEnum, ProfileLevelEnum
 from graphene_federation import key,external,extend
 
 
@@ -51,7 +51,7 @@ class UserProfileAndRoleObjects(graphene.ObjectType):
     id = graphene.String()
     user_profile = graphene.Field(UserProfileObject)
     user_roles = graphene.List(UserRoleObjects)
-    location_scan = graphene.Field('ilmis_dto.Settings.InitialLocationObject')
+    # location_scan = graphene.Field('kcb_dto.Settings.InitialLocationObject')
 
 class UserProfileAndRoleResponseObject(graphene.ObjectType):
     response = graphene.Field(ResponseObject)

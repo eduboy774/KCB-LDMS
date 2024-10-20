@@ -41,7 +41,7 @@ class Query(ObjectType):
 
     def resolve_get_user_profile_and_role(self, info,**kwargs):
         profile_unique_id = UserUtils.__profile__(info.context.headers)
-
+        print('profile_unique_id',profile_unique_id)
         if profile_unique_id is None:
             return info.return_type.graphene_type(response=ResponseObject.get_response(id="6"))
 

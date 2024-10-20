@@ -1,5 +1,5 @@
 import graphene
-from ilmis_dto.Response import ResponseObject
+from kcb_dto.Response import ResponseObject
 
 
 

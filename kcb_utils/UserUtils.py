@@ -1,5 +1,5 @@
 from rest_framework.permissions import IsAuthenticated
-from kcb_settings.models import LocationScanUsers
+# from kcb_settings.models import LocationScanUsers
 from kcb_uaa.models import UsersWithRoles
 from kcb_accounts.models import UsersProfiles
 from .BearerTokenAuthentication import BearerTokenAuthentication
@@ -9,14 +9,15 @@ import uuid
 
 class UserUtils:
     def __profile__(request):
-
-        user_data = UserUtils.get_user(request)
+        print('request',request)
+        user_data = UserUtils.get_user(request=request)
+        print('user_data',user_data)
         return user_data['profile_unique_id']
     
-    def __location__(request):
+    # def __location__(request):
 
-        user_data = UserUtils.get_user_location_scan(request)
-        return user_data['location']
+    #     user_data = UserUtils.get_user_location_scan(request)
+    #     return user_data['location']
     
     
     def get_user_permissions(user):
@@ -31,11 +32,13 @@ class UserUtils:
     
     
     def get_user(user = None, request = None):
+        print('user',user)
         
-        is_authenticated, user = BearerTokenAuthentication.authenticate(None,user)
+        is_authenticated, user = BearerTokenAuthentication.authenticate(request,user)
         
-        profile=UsersProfiles.objects.filter(profile_user=user).first()
-        
+        profile=UsersProfiles.objects.filter(profile_user=user,request=request).first()
+        print('profile',profile)
+
         user_data={
             'profile_unique_id':str(profile.profile_unique_id),
             'first_name':user.first_name,
@@ -55,9 +58,9 @@ class UserUtils:
         is_authenticated, user = BearerTokenAuthentication.authenticate(None,user)
         
         profile=UsersProfiles.objects.filter(profile_user=user).first()
-        location = LocationScanUsers.objects.filter(user_profile=profile).first()
+        # location = LocationScanUsers.objects.filter(user_profile=profile).first()
         user_data={
-            'location': location.location_scan.location_unique_id,
+            # 'location': location.location_scan.location_unique_id,
             
         }
 

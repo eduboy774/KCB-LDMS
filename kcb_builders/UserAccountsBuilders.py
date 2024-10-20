@@ -1,13 +1,14 @@
 from kcb_accounts.models import *
 from kcb_dto.UserAccounts import *
 from kcb_builders.UAABuilder import UAABuilder
-from kcb_settings.models import LocationScanUsers
+# from kcb_settings.models import LocationScanUsers
 from kcb_uaa.models import *
 
 
 class UserAccountBuilder:
     def get_user_profile_data(id):
         # try: 
+            print('user',id)
             user_profile=UsersProfiles.objects.filter(profile_unique_id=id).first()
             
             return UserProfileObject(
@@ -28,20 +29,21 @@ class UserAccountBuilder:
         #     return UserProfileObject()
             
     def get_user_profile_and_role_data(id):
+            print('here',id)
         # try:
+        # profile_unique_id=id
             user_profile=UsersProfiles.objects.filter(profile_is_active=True,profile_unique_id=id).first()
             user_with_role= UsersWithRoles.objects.filter(user_with_role_user=user_profile.profile_user).first()
-            user_assigned_location_scan = LocationScanUsers.objects.filter(user_profile__profile_unique_id=id).first()
+            # user_assigned_location_scan = LocationScanUsers.objects.filter(user_profile__profile_unique_id=id).first()
 
             roles = UsersWithRoles.objects.filter(user_with_role_user=user_profile.profile_user).values('user_with_role_role__role_unique_id')
             roles_list = list(map(lambda x: UAABuilder.get_role_data(str(x['user_with_role_role__role_unique_id'])), roles))
             
-            from kcb_builders.SettingsBuilders import SettingsBuilder
             return UserProfileAndRoleObjects(
                 id = user_profile.primary_key,
                 user_profile = UserAccountBuilder.get_user_profile_data(user_profile.profile_unique_id),
                 user_roles = roles_list,
-                location_scan = SettingsBuilder.get_initial_location_data(id=user_assigned_location_scan.location_scan.location_unique_id if user_assigned_location_scan else None)
+                # location_scan = SettingsBuilder.get_initial_location_data(id=user_assigned_location_scan.location_scan.location_unique_id if user_assigned_location_scan else None)
             )
            
         # except Exception as e:
