@@ -17,3 +17,7 @@ class BearerTokenAuthentication(BaseBackend):
         #TODO: remove this when in production
         except Exception as e:
             return False, None
+# 
+
+
+# npx diagnose-endpoint@1.1.0 --endpoint="http://127.0.0.1:8000/" --method="POST" --headers="Content-Type: application/json,Authorization: Bearer c86b0f6e63a8aecb6d0e7f5cffce4c2a66ee2a62"

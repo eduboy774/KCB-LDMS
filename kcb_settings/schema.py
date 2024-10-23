@@ -43,9 +43,8 @@ class Query(ObjectType):
         if filtering.zone_code is not None:
             regional_zone = regional_zone.filter(name=filtering.zone_code).values('zone_code')
 
-
-        category_list = list(map(lambda x: KcbBuilders.get_category_data(str(x['uuid'])),regional_zone))
-        return info.return_type.graphene_type(response=ResponseObject.get_response(id="1"), data = category_list)
+        zone_list = list(map(lambda x: KcbBuilders.get_regional_zone_data(str(x['uuid'])),regional_zone))
+        return info.return_type.graphene_type(response=ResponseObject.get_response(id="1"), data = zone_list)
     
 
     def resolve_get_all_kcb_departments(self, info,filtering=None,**kwargs):

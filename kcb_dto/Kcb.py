@@ -14,6 +14,8 @@ class KcbCategoryObject(graphene.ObjectType):
     id = graphene.String()
     uuid = graphene.String()
     category_name = graphene.String()
+    is_active = graphene.Boolean()
+
 
 class KcbCategoryResponseObject(graphene.ObjectType):
     data = graphene.List(KcbCategoryObject)
@@ -39,6 +41,7 @@ class KcbRegionalZonalObject(graphene.ObjectType):
     zone_name = graphene.String()
     zone_code = graphene.String()
     zone_description = graphene.String()
+    is_active = graphene.Boolean()
 
 class KcbRegionalZonalResponseObject(graphene.ObjectType):
     data = graphene.List(KcbRegionalZonalObject)
@@ -66,6 +69,7 @@ class KcbDepartmentObject(graphene.ObjectType):
     department_name = graphene.String()
     department_code = graphene.String()
     department_description = graphene.String()
+    is_active = graphene.Boolean()
 
 
 class KcbDepartmentResponseObject(graphene.ObjectType):
